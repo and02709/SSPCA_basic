@@ -30,14 +30,14 @@ PMDvL1.sumabs <- function(X, npc, n, p, sumabsv, niter, trace){
     else{
       temp <- RSpectra::svds(Xuse, k=1)
       if(i==1){
-        temp <- SMD.sumabs(X=Xuse, d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
-                           sumabsv=sumabsv, niter=niter, trace=trace,
-                           npc=i)
+        temp <- SSPCA::SMD.sumabs(X=Xuse, d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
+                                  sumabsv=sumabsv, niter=niter, trace=trace,
+                                  npc=i)
       }
       else{
-        temp <- SMDorth.sumabs(X=Xuse, us=u[,1:(i-1)], d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
-                               sumabsv=sumabsv, niter=niter, trace=trace,
-                               npc=i)
+        temp <- SSPCA::SMDorth.sumabs(X=Xuse, us=u[,1:(i-1)], d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
+                                      sumabsv=sumabsv, niter=niter, trace=trace,
+                                      npc=i)
       }
       d[i] <- temp$d
       u[,i] <- temp$u

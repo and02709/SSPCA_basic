@@ -29,12 +29,12 @@ SSPCA.load <- function(X, Y, npc,
   if(is.null(colnames(X))) colnames(X) <- paste0("X",seq(1:p))
   
   # Generate response kernel
-  L <- respkernel(Y=Y, n=n, kernel=kernel)
+  L <- SSPCA::respkernel(Y=Y, n=n, kernel=kernel)
   # Calculate Psi matrix
-  Psi <- get.psi(X=X, L=L, n=n, p=p)
+  Psi <- SSPCA::get.psi(X=X, L=L, n=n, p=p)
   # Perform Penalized matrix decomposition (PMD)
   if(nonzero.loadings==p) return(SPCA.svd(X=Psi, npc=npc))
-  out <- PMDvL1.load(X=Psi, npc=npc, n=n, p=p, nonzero.loadings=nonzero.loadings, niter=niter, trace=trace)
+  out <- SSPCA::PMDvL1.load(X=Psi, npc=npc, n=n, p=p, nonzero.loadings=nonzero.loadings, niter=niter, trace=trace)
   
   return(out)
 }
