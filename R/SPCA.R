@@ -23,12 +23,12 @@ SPCA <- function(X, Y, npc, kernel=c("linear", "delta")){
   if(is.null(colnames(X))) colnames(X) <- paste0("X",seq(1:p))
   
   # Generate response kernel
-  L <- respkernel(Y=Y, n=n, kernel=kernel)
+  L <- SSPCA::respkernel(Y=Y, n=n, kernel=kernel)
   
   if(p > n){
-    return(dual.decomp(X=X,L=L, npc=npc, n=n, p=p))
+    return(SSPCA::dual.decomp(X=X,L=L, npc=npc, n=n, p=p))
   }
   else{
-    return(reg.decomp(X=X, L=L, npc=npc, n=n, p=p))
+    return(SSPCA::reg.decomp(X=X, L=L, npc=npc, n=n, p=p))
   }
 }

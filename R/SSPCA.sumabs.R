@@ -29,12 +29,13 @@ SSPCA.sumabs <- function(X, Y, npc,
   if(is.null(colnames(X))) colnames(X) <- paste0("X",seq(1:p))
   
   # Generate response kernel
-  L <- respkernel(Y=Y, n=n, kernel=kernel)
+  L <- SSPCA::respkernel(Y=Y, n=n, kernel=kernel)
   # Calculate Psi matrix
-  Psi <- get.psi(X=X, L=L, n=n, p=p)
+  Psi <- SSPCA::get.psi(X=X, L=L, n=n, p=p)
   # Perform Penalized matrix decomposition (PMD)
   if(sumabsv==sqrt(p)) return(SPCA.svd(X=Psi, npc=npc))
   out <- PMDvL1.sumabs(X=Psi, npc=npc, n=n, p=p, sumabsv=sumabsv, niter=niter, trace=trace)
   
   return(out)
 }
+

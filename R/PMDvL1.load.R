@@ -30,14 +30,14 @@ PMDvL1.load <- function(X, npc, n, p, nonzero.loadings, niter, trace){
     else{
       temp <- RSpectra::svds(Xuse, k=1)
       if(i==1){
-        temp <- SMD.load(X=Xuse, d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
-                         nonzero.loadings=nonzero.loadings, niter=niter, trace=trace,
-                         npc=i)
+        temp <- SSPCA::SMD.load(X=Xuse, d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
+                                nonzero.loadings=nonzero.loadings, niter=niter, trace=trace,
+                                npc=i)
       }
       else{
-        temp <- SMDorth.load(X=Xuse, us=u[,1:(i-1)], d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
-                             nonzero.loadings=nonzero.loadings, niter=niter, trace=trace,
-                             npc=i)
+        temp <- SSPCA::SMDorth.load(X=Xuse, us=u[,1:(i-1)], d=temp$d, u=temp$u, v=temp$v, n=n, p=p, 
+                                    nonzero.loadings=nonzero.loadings, niter=niter, trace=trace,
+                                    npc=i)
       }
       d[i] <- temp$d
       u[,i] <- temp$u

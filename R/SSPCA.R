@@ -28,12 +28,12 @@ SSPCA <- function(X, Y, npc, sparsity.type=c("loadings", "sumabs"),
   
   if(sparsity.type != "loadings" && sparsity.type!= "sumabs") stop("Must specify correct sparse penalty")
   if(sparsity.type=="loadings"){
-    return(SSPCA.load(X=X,Y=Y,npc=npc,nonzero.loadings = nonzero.loadings,
-                      kernel=kernel, niter=niter,trace=trace))
+    return(SSPCA::SSPCA.load(X=X,Y=Y,npc=npc,nonzero.loadings = nonzero.loadings,
+                             kernel=kernel, niter=niter,trace=trace))
   } 
   if(sparsity.type=="sumabs"){
-    return(SSPCA.sumabs(X=X,Y=Y,npc=npc,sumabsv=sumabsv,
-                        kernel=kernel, niter=niter,trace=trace))
+    return(SSPCA::SSPCA.sumabs(X=X,Y=Y,npc=npc,sumabsv=sumabsv,
+                               kernel=kernel, niter=niter,trace=trace))
   }
   
   stop("SOMETHING GONE WRONG")
