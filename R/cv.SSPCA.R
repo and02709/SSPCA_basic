@@ -69,7 +69,7 @@ cv.SSPCA <- function(X, Y ,npc, n.folds, sparsity.type=c("loadings", "sumabs"),
   if(base.apply && parallel){ 
     if(is.null(n.cores)) n.cores <- parallel::detectCores()
     clust <- parallel::makeCluster(n.cores)
-    metric.vec <- parApply(cl=clust,X=as.matrix(param.grid),1,cv.partition.SSPCA,df.partition=df.partition,npc=npc,
+    metric.vec <- parallel::parApply(cl=clust,X=as.matrix(param.grid),1,cv.partition.SSPCA,df.partition=df.partition,npc=npc,
                            n.folds=n.folds,sparsity.type=sparsity.type,nonzero.loadings=NULL,
                            sumabsv=NULL,kernel=kernel,niter=niter,trace=trace)
   }
